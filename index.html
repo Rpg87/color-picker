@@ -6,16 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/color-wheel.png">
+    <script src="https://kit.fontawesome.com/66eb20f6df.js" crossorigin="anonymous"></script>
     <title>Color Picker</title>
+
 </head>
 
 <body class="center">
-    <div id="container" class="center">
-        <p id="color"> #04CEE6</p>
-        <button id="btn-color">Cambiar color</button>
+
+
+
+    <div class="counter"> Favoritos
+        <div class="list">
+
+            <!-- <div> tareas</div>
+            <div> tareas</div>
+            <div> tareas</div> -->
+        </div>
     </div>
 
+    <div id="modalContainer">
+        <div id="messageModal" class="modal">
+            <p id="messageText"></p>
+        </div>
+    </div>
+
+
+
+    <div id="container" class="center">
+        <i class="fa-solid fa-heart heart"></i>
+        <p id="color" class="copyTxt"> #04CEE6</p>
+        <button id="btn-color" class="btn-color">Cambiar color</button>
+    </div>
+
+
+
+
     <script src="main.js"></script>
+
 </body>
 
 </html>

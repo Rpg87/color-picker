@@ -1,5 +1,9 @@
 const btn = document.querySelector('button');
 const txt = document.getElementById('color');
+const copyTxt = document.querySelector('.copyTxt');
+
+const messageModal = document.getElementById('messageModal');
+const messageText = document.getElementById('messageText');
 
 
 const generateRandomHex = () => {
@@ -22,5 +26,27 @@ const changeColor = () => {
 
 }
 
+const userCopyTxt = (txt) => {
+    navigator.clipboard.writeText(txt)
+        .then(() => showMsg('Copiado'))
+        .catch(error => showMsg('Error al copiar el texto: ' + error));
+    console.log('copy');
+}
+
+const showMsg = (msg) => {
+    messageText.textContent = msg;
+    messageModal.style.display = 'block';
+
+    setTimeout(() => {
+        messageModal.style.display = 'none';
+    }, 2000);
+
+};
+
+
 btn.addEventListener('click', changeColor)
 
+copyTxt.addEventListener('click', function () {
+    userCopyTxt(copyTxt.innerText);
+
+})

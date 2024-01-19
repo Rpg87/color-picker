@@ -7,33 +7,89 @@
 body {
     height: 100vh;
     background-color: #04CEE6;
-    text-align: center;
+
+
+}
+
+.border {
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 0.2fr 0.5fr 1fr 0.2fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+        ". . modal ."
+        ". . color counter"
+        ". . . .";
+
+    gap: 0 15px;
 }
 
+#modalContainer {
+
+    grid-area: modal;
+    display: flex;
+    align-items: flex-end;
+
+}
+
+.modal {
+    background-color: white;
+    width: fit-content;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+
+}
+
+
 #container {
+    position: relative;
     width: fit-content;
     height: fit-content;
     padding: 3vh;
-    background-color: white;
-    border: 5px solid black;
-    border-radius: 20px;
-    flex-wrap: wrap;
+    background-color: transparent;
+    opacity: 0.8;
+    border-image: linear-gradient(#D3CED3, #3A8A9E) 30;
+    border-style: solid;
+    border-width: 5px;
+    display: flex;
     flex-direction: column;
+    grid-area: color;
 }
+
+.counter {
+    border-image: linear-gradient(#D3CED3, #3A8A9E) 10;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    font-size: min(1.5rem, max(1rem, 2vw));
+    text-align: center;
+    font-weight: bold;
+    height: fit-content;
+    width: fit-content;
+    grid-area: counter;
+    padding: 4px;
+    margin-right: 5px;
+}
+
+.list {}
 
 #color {
     font-size: min(5rem, max(2rem, 5vw));
     font-weight: bold;
     padding-bottom: 20px;
+    margin-top: 10px;
+    user-select: all;
+    cursor: copy;
 }
 
-button {
+.btn-color {
     user-select: none;
     font-size: min(1.87rem, max(1rem, 3vw));
     cursor: pointer;
@@ -44,16 +100,40 @@ button {
     border-radius: 15px;
     border: 1px solid #d6bcd6;
     padding: 7px 25px;
-    color: #3a8a9e;
+    /* color: #3a8a9e; */
+    color: #2B2D42;
     text-shadow: 0px 1px 0px #e1e2ed;
 }
 
-button:hover {
+.btn-color:hover {
     background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
     background-color: #bab1ba;
 }
 
-button:active {
+.btn-color:active {
     position: relative;
+    top: 1px;
+}
+
+/* .btn-heart {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+} */
+
+.heart {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.5rem;
+    align-items: flex-end;
+}
+
+.heart:hover {
+    color: red;
+}
+
+.heart:active {
     top: 1px;
 }
