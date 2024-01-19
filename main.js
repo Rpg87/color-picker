@@ -28,10 +28,11 @@ const changeColor = () => {
 
 const userCopyTxt = (txt) => {
     navigator.clipboard.writeText(txt)
-        .then(() => showMsg('Copiado'))
+        .then(() => showMsg('Copiado '))
         .catch(error => showMsg('Error al copiar el texto: ' + error));
     console.log('copy');
 }
+
 
 const showMsg = (msg) => {
     messageText.textContent = msg;

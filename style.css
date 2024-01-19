@@ -33,17 +33,25 @@ body {
     grid-area: modal;
     display: flex;
     align-items: flex-end;
+    margin-bottom: 5px;
+    margin-left: 55px;
 
 }
 
 .modal {
-    background-color: white;
     width: fit-content;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 5px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     display: none;
+    background-color: rgba(195, 202, 216, 0.4);
+    border-image: linear-gradient(#D3CED3, #3A8A9E) 10;
+}
+
+#messageText {
+    font-size: min(1.5rem, max(0.5rem, 1vw));
+    font-weight: bold;
 
 }
 
@@ -85,7 +93,6 @@ body {
     font-weight: bold;
     padding-bottom: 20px;
     margin-top: 10px;
-    user-select: all;
     cursor: copy;
 }
 
@@ -100,7 +107,7 @@ body {
     border-radius: 15px;
     border: 1px solid #d6bcd6;
     padding: 7px 25px;
-    /* color: #3a8a9e; */
+    text-transform: capitalize;
     color: #2B2D42;
     text-shadow: 0px 1px 0px #e1e2ed;
 }
