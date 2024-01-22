@@ -84,9 +84,18 @@ body {
     grid-area: counter;
     padding: 4px;
     margin-right: 5px;
+
+
 }
 
-.list {}
+
+
+.list {
+    background-color: rgba(213, 226, 215, 0.5);
+    text-decoration: none;
+}
+
+
 
 #color {
     font-size: min(5rem, max(2rem, 5vw));
