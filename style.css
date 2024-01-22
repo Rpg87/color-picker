@@ -88,11 +88,23 @@ body {
 
 }
 
+.numbers {
+    text-decoration: wavy underline overline 1px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+
+
+}
+
 
 
 .list {
     background-color: rgba(213, 226, 215, 0.5);
     text-decoration: none;
+}
+
+ul {
+    user-select: all;
 }
 
 
@@ -152,4 +164,8 @@ body {
 
 .heart:active {
     top: 1px;
+}
+
+.selected {
+    color: red;
 }

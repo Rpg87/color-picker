@@ -8,6 +8,7 @@ const messageText = document.getElementById('messageText');
 const heart = document.querySelector('.heart');
 const counter = document.querySelector('.counter');
 const list = document.querySelector('.list');
+const listContainer = document.getElementById('listContainer');
 
 
 const generateRandomHex = () => {
@@ -26,8 +27,14 @@ const changeColor = () => {
     let changeColors = generateRandomHex();
     document.body.style.backgroundColor = changeColors;
     txt.textContent = changeColors;
+    const currentColor = txt.textContent.trim();
+    const isColorInList = isFavoriteInList(currentColor);
 
-
+    if (isColorInList) {
+        heart.classList.add('selected');
+    } else {
+        heart.classList.remove('selected');
+    }
 }
 
 const userCopyTxt = (txt) => {
@@ -49,24 +56,56 @@ const showMsg = (msg) => {
 };
 
 const addFavorite = () => {
-    let favorite = copyTxt.textContent;
+    let favorite = copyTxt.textContent.trim();
 
-    if (!isFavoriteInList(favorite)) {
-        // Crear un nuevo elemento div con el contenido del favorito
-        const listItem = document.createElement('ul');
+    const isAlreadyInList = isFavoriteInList(favorite);
 
+    if (isAlreadyInList) {
+        removeFromFavorites(findFavoriteByText(favorite));
+
+
+    } else {
+        const listItem = document.createElement('div');
         listItem.textContent = favorite;
-
-        // Agregar el nuevo elemento a la lista
         list.appendChild(listItem);
 
-        // Cambiar el color del corazón
-        heart.style.color = 'red';
-
-        console.log(favorite);
     }
+    const isColorInList = isFavoriteInList(txt.textContent.trim());
+    heart.classList.toggle('selected', isColorInList);
+};
 
-}
+const removeFromFavorites = (item) => {
+    if (item && item.parentNode === listContainer) {
+
+        if (heart.classList.contains('selected')) {
+            const color = item.textContent;
+            listContainer.removeChild(item);
+
+
+            if (!listContainer.querySelector('div')) {
+                heart.classList.remove('selected');
+            }
+
+
+            document.body.style.backgroundColor = txt.textContent;
+
+            showMsg(`Eliminado: ${color}`);
+        }
+    }
+};
+
+
+const findFavoriteByText = (text) => {
+    const existingItems = list.querySelectorAll('div');
+    for (const item of existingItems) {
+        if (item.textContent.trim() === text) {
+            return item;
+        }
+    }
+    return null;
+};
+
+
 
 const isFavoriteInList = (favorite) => {
     const existingItems = list.querySelectorAll('div');
@@ -79,6 +118,31 @@ const isFavoriteInList = (favorite) => {
 };
 
 
+list.addEventListener('click', (event) => {
+    const clickedItem = event.target;
+    if (clickedItem.tagName === 'DIV') {
+
+        txt.textContent = clickedItem.textContent;
+        document.body.style.backgroundColor = txt.textContent;
+        console.log(txt.textContent)
+
+    }
+});
+
+listContainer.addEventListener('click', (event) => {
+    const clickedItem = event.target;
+    if (clickedItem.tagName === 'DIV') {
+
+        txt.textContent = clickedItem.textContent;
+
+
+        const isColorInList = isFavoriteInList(txt.textContent.trim());
+        heart.classList.toggle('selected', isColorInList);
+    }
+
+});
+
+
 
 btn.addEventListener('click', changeColor)
 
@@ -87,4 +151,12 @@ copyTxt.addEventListener('click', function () {
 
 })
 
-heart.addEventListener('click', addFavorite)
+heart.addEventListener('click', addFavorite);
+
+listContainer.addEventListener('click', (e) => {
+    const clickedItem = e.target;
+    if (clickedItem.tagname === 'div') {
+        txt.textContent = clickedItem.textContent;
+        heart.classList.remove('selected');
+    }
+})
