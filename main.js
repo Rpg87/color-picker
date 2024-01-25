@@ -31,7 +31,8 @@ const changeColor = () => {
     const isColorInList = isFavoriteInList(currentColor);
     heart.classList.toggle('selected', isColorInList);
     //Determines if the heart should be red based on the added color in favorites
-
+    heart.classList.toggle('fa-beat', isColorInList);
+    //adds an animation depending on whether it is in the favorites list or not
 
 }
 // copy color number to clipboard
@@ -68,6 +69,7 @@ const addFavorite = () => {
     }
     const isColorInList = isFavoriteInList(txt.textContent.trim());
     heart.classList.toggle('selected', isColorInList);
+    heart.classList.toggle('fa-beat', isColorInList);
 
 };
 
@@ -87,6 +89,7 @@ const removeFromFavorites = (item) => {
         if (heart.classList.contains('selected')) {
             const color = item.textContent;
             listContainer.removeChild(item);
+
 
 
             if (!listContainer.querySelector('div')) {
@@ -137,6 +140,7 @@ listContainer.addEventListener('click', (event) => {
 
         const isColorInList = isFavoriteInList(txt.textContent.trim());
         heart.classList.toggle('selected', isColorInList);
+        heart.classList.toggle('fa-beat', isColorInList);
     }
 
 });
@@ -163,4 +167,5 @@ listContainer.addEventListener('click', (e) => {
 trash.addEventListener('click', function () {
     list.innerHTML = '';
     heart.classList.remove('selected')
+    heart.classList.remove('fa-beat');
 });
