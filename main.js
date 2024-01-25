@@ -49,7 +49,7 @@ const showMsg = (msg) => {
 
 };
 
-
+// Function to add or remove a color from the favorites list
 const addFavorite = () => {
     let favorite = txt.textContent.trim();
     const isAlreadyInList = isFavoriteInList(favorite); //check if it is included in the favorites list 
@@ -68,6 +68,7 @@ const addFavorite = () => {
 
 };
 
+// Function to check if a color is in the favorites list
 const isFavoriteInList = (favorite) => {
     const existingItems = listContainer.querySelectorAll('div');
     for (const item of existingItems) {
@@ -78,6 +79,7 @@ const isFavoriteInList = (favorite) => {
     return false;
 };
 
+// Function to remove a color from the favorites list
 const removeFromFavorites = (item) => {
     if (item && item.parentNode === listContainer) {
 
@@ -89,7 +91,7 @@ const removeFromFavorites = (item) => {
     }
 };
 
-
+// Function to find a favorite color in the list by text
 const findFavoriteByText = (text) => {
     const existingItems = listContainer.querySelectorAll('div');
     for (const item of existingItems) {
@@ -101,10 +103,7 @@ const findFavoriteByText = (text) => {
 };
 
 
-
-
-
-
+// Event listener for clicking on the list container
 listContainer.addEventListener('click', (event) => {
     const clickedItem = event.target;
     if (clickedItem.tagName === 'DIV') {
@@ -120,17 +119,19 @@ listContainer.addEventListener('click', (event) => {
     }
 });
 
-
+// Event listener for clicking on the button to change color
 btn.addEventListener('click', changeColor);
 
-
+// Event listener for clicking on the color text to copy to clipboard
 txt.addEventListener('click', function () {
     userCopyTxt(txt.innerText);
 
 });
 
+// Event listener for clicking on the heart icon to add/remove from favorites
 heart.addEventListener('click', addFavorite);
 
+// Event listener for clicking on the trash icon to clear the favorites list
 trash.addEventListener('click', function () {
     listContainer.innerHTML = '';
     heart.classList.remove('selected')
