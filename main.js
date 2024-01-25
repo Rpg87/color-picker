@@ -1,15 +1,14 @@
 const btn = document.querySelector('button');
 const txt = document.getElementById('color');
 const copyTxt = document.querySelector('.copyTxt');
-
 const messageModal = document.getElementById('messageModal');
 const messageText = document.getElementById('messageText');
-
 const heart = document.querySelector('.heart');
+const listContainer = document.getElementById('listContainer');
+const trash = document.querySelector('.trash');
+
 const counter = document.querySelector('.counter');
 const list = document.querySelector('.list');
-const listContainer = document.getElementById('listContainer');
-
 
 const generateRandomHex = () => {
     let digits = '0123456789ABCDEF'; /* all options for hexadecimal numbers*/
@@ -28,23 +27,21 @@ const changeColor = () => {
     document.body.style.backgroundColor = changeColors;
     txt.textContent = changeColors;
     const currentColor = txt.textContent.trim();
+
     const isColorInList = isFavoriteInList(currentColor);
+    heart.classList.toggle('selected', isColorInList);
+    //Determines if the heart should be red based on the added color in favorites
 
-    if (isColorInList) {
-        heart.classList.add('selected');
-    } else {
-        heart.classList.remove('selected');
-    }
+
 }
-
+// copy color number to clipboard
 const userCopyTxt = (txt) => {
     navigator.clipboard.writeText(txt)
         .then(() => showMsg('Copiado '))
         .catch(error => showMsg('Error al copiar el texto: ' + error));
-    console.log('copy');
 }
 
-
+// show a message when the user copy color number in his clipboard
 const showMsg = (msg) => {
     messageText.textContent = msg;
     messageModal.style.display = 'block';
@@ -57,21 +54,31 @@ const showMsg = (msg) => {
 
 const addFavorite = () => {
     let favorite = copyTxt.textContent.trim();
-
     const isAlreadyInList = isFavoriteInList(favorite);
 
     if (isAlreadyInList) {
         removeFromFavorites(findFavoriteByText(favorite));
-
-
     } else {
         const listItem = document.createElement('div');
         listItem.textContent = favorite;
         list.appendChild(listItem);
+        listItem.style.backgroundColor = txt.textContent;
+
 
     }
     const isColorInList = isFavoriteInList(txt.textContent.trim());
     heart.classList.toggle('selected', isColorInList);
+
+};
+
+const isFavoriteInList = (favorite) => {
+    const existingItems = list.querySelectorAll('div');
+    for (const item of existingItems) {
+        if (item.textContent === favorite) {
+            return true;
+        }
+    }
+    return false;
 };
 
 const removeFromFavorites = (item) => {
@@ -107,15 +114,7 @@ const findFavoriteByText = (text) => {
 
 
 
-const isFavoriteInList = (favorite) => {
-    const existingItems = list.querySelectorAll('div');
-    for (const item of existingItems) {
-        if (item.textContent === favorite) {
-            return true;
-        }
-    }
-    return false;
-};
+
 
 
 list.addEventListener('click', (event) => {
@@ -149,7 +148,7 @@ btn.addEventListener('click', changeColor)
 copyTxt.addEventListener('click', function () {
     userCopyTxt(copyTxt.innerText);
 
-})
+});
 
 heart.addEventListener('click', addFavorite);
 
@@ -159,4 +158,9 @@ listContainer.addEventListener('click', (e) => {
         txt.textContent = clickedItem.textContent;
         heart.classList.remove('selected');
     }
-})
+});
+
+trash.addEventListener('click', function () {
+    list.innerHTML = '';
+    heart.classList.remove('selected')
+});

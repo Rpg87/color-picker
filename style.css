@@ -23,7 +23,7 @@ body {
     grid-template-areas:
         ". . modal ."
         ". . color counter"
-        ". . . .";
+        ". . . counter";
 
     gap: 0 15px;
 }
@@ -85,7 +85,17 @@ body {
     padding: 4px;
     margin-right: 5px;
 
+}
 
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.trash:hover {
+    color: white;
 }
 
 .numbers {
@@ -143,12 +153,7 @@ ul {
     top: 1px;
 }
 
-/* .btn-heart {
-    background: none;
-    border: none;
-    display: flex;
-    justify-content: flex-end;
-} */
+
 
 .heart {
     position: absolute;
@@ -159,7 +164,7 @@ ul {
 }
 
 .heart:hover {
-    color: red;
+    color: rgb(226, 14, 53);
 }
 
 .heart:active {
@@ -167,5 +172,26 @@ ul {
 }
 
 .selected {
-    color: red;
+    color: white;
+    animation: boom infinite;
+}
+
+@keyframes boom {
+    0% {
+        font-size: 0.8rem;
+    }
+
+    45% {
+        font-size: 1rem;
+    }
+
+    70% {
+        font-size: 1.2rem;
+    }
+
+
+    100% {
+        font-size: 1.5rem;
+
+    }
 }
