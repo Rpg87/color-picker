@@ -6,7 +6,7 @@
 
 body {
     height: 100vh;
-    background-color: #04CEE6;
+    background-color: #6990E3;
 
 
 }
@@ -21,11 +21,21 @@ body {
     grid-template-columns: 0.2fr 0.5fr 1fr 0.2fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas:
-        ". . modal ."
+        "logo logo modal ."
         ". . color counter"
         ". . . counter";
 
     gap: 0 15px;
+}
+
+.logo {
+    grid-area: logo;
+    width: 50%;
+}
+
+
+.img {
+    width: 100%;
 }
 
 #modalContainer {
@@ -42,7 +52,6 @@ body {
     width: fit-content;
     border: 1px solid #ccc;
     padding: 5px;
-    border-radius: 8px;
     display: none;
     background-color: rgba(195, 202, 216, 0.4);
     border-image: linear-gradient(#D3CED3, #3A8A9E) 10;
@@ -86,6 +95,10 @@ body {
 
 }
 
+.counter:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
 .title {
     display: flex;
     justify-content: center;
@@ -106,11 +119,13 @@ body {
     margin-top: 5px;
     padding-bottom: 5px;
     user-select: none;
+
 }
 
 .list {
     background-color: rgba(213, 226, 215, 0.5);
     text-decoration: none;
+    cursor: pointer;
 }
 
 ul {
@@ -124,7 +139,14 @@ ul {
     font-weight: bold;
     padding-bottom: 20px;
     margin-top: 10px;
-    cursor: copy 20px;
+    cursor: copy;
+    text-decoration: white dotted;
+
+}
+
+#color:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 15px;
 }
 
 .btn-color {
@@ -162,10 +184,13 @@ ul {
     font-size: 1.5rem;
     align-items: flex-end;
     cursor: pointer;
+
+
 }
 
 .heart:hover {
-    color: rgb(226, 14, 53);
+    color: white;
+
 }
 
 .heart:active {
@@ -175,8 +200,4 @@ ul {
 .selected {
     color: white;
 
-}
-
-.fa-solid {
-    font-weight: none;
 }
