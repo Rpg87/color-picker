@@ -8,8 +8,6 @@ body {
     height: 100vh;
     background-color: #6990E3;
     user-select: none;
-
-
 }
 
 .border {
@@ -24,7 +22,7 @@ body {
     grid-template-areas:
         "logo logo modal ."
         ". . color counter"
-        ". . . counter";
+        "footer footer . counter";
 
     gap: 0 15px;
 }
@@ -33,9 +31,6 @@ body {
     grid-area: logo;
     width: 100%;
 }
-
-
-
 
 .img {
     width: 50%;
@@ -48,7 +43,6 @@ body {
     align-items: flex-end;
     margin-bottom: 5px;
     margin-left: 55px;
-
 }
 
 .modal {
@@ -63,9 +57,7 @@ body {
 #messageText {
     font-size: min(1.5rem, max(0.5rem, 1vw));
     font-weight: bold;
-
 }
-
 
 #container {
     position: relative;
@@ -135,8 +127,6 @@ ul {
     user-select: all;
 }
 
-
-
 #color {
     font-size: min(5rem, max(2rem, 5vw));
     font-weight: bold;
@@ -178,8 +168,6 @@ ul {
     top: 1px;
 }
 
-
-
 .heart {
     position: absolute;
     top: 5px;
@@ -187,8 +175,6 @@ ul {
     font-size: 1.5rem;
     align-items: flex-end;
     cursor: pointer;
-
-
 }
 
 .heart:hover {
@@ -202,7 +188,25 @@ ul {
 
 .selected {
     color: white;
+}
 
+footer {
+    grid-area: footer;
+    display: grid;
+    align-content: end;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.link {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.link:hover {
+    background-image: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    border-radius: 10%;
 }
 
 @media all and (max-width: 560px) {
@@ -211,13 +215,20 @@ ul {
     }
 
     .center {
-
         grid-template-areas:
             ". . modal logo"
             ". . color counter"
-            ". . . counter";
+            "footer footer footer counter";
+    }
 
+}
 
+@media all and (min-width: 560px) and (max-width: 699px) {
+    .center {
+        grid-template-areas:
+            ". . modal logo"
+            ". . color counter"
+            "footer footer footer counter";
     }
 
 }

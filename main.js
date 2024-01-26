@@ -62,6 +62,12 @@ const addFavorite = () => {
         listContainer.appendChild(listItem);
         listItem.style.backgroundColor = txt.textContent;
     }
+
+    //add info to localstorage
+    const favoritesArray = Array.from(listContainer.querySelectorAll('div')).map(item => item.textContent);
+    localStorage.setItem('favs', JSON.stringify(favoritesArray));
+
+
     const isColorInList = isFavoriteInList(txt.textContent.trim());
     heart.classList.toggle('selected', isColorInList);
     heart.classList.toggle('fa-beat', isColorInList);
@@ -87,7 +93,9 @@ const removeFromFavorites = (item) => {
             const color = item.textContent;
             listContainer.removeChild(item);
             showMsg(`Eliminado: ${color}`);
+
         }
+
     }
 };
 
@@ -119,6 +127,19 @@ listContainer.addEventListener('click', (event) => {
     }
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favs')) || [];
+    if (storedFavorites.length > 0) {
+        storedFavorites.forEach(favorite => {
+            const listItem = document.createElement('div');
+            listItem.textContent = favorite;
+            listContainer.appendChild(listItem);
+            listItem.style.backgroundColor = favorite;
+        });
+    }
+});
+
 // Event listener for clicking on the button to change color
 btn.addEventListener('click', changeColor);
 
@@ -131,11 +152,12 @@ txt.addEventListener('click', function () {
 // Event listener for clicking on the heart icon to add/remove from favorites
 heart.addEventListener('click', addFavorite);
 
-// Event listener for clicking on the trash icon to clear the favorites list
+// Event listener for clicking on the trash icon to clear the favorites list and localStorage
 trash.addEventListener('click', function () {
     listContainer.innerHTML = '';
     heart.classList.remove('selected')
     heart.classList.remove('fa-beat');
+    localStorage.removeItem("favs");
 });
 
 
