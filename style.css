@@ -30,12 +30,14 @@ body {
 
 .logo {
     grid-area: logo;
-    width: 50%;
+    width: 100%;
 }
 
 
+
+
 .img {
-    width: 100%;
+    width: 50%;
 }
 
 #modalContainer {
@@ -199,5 +201,22 @@ ul {
 
 .selected {
     color: white;
+
+}
+
+@media all and (max-width: 560px) {
+    .img {
+        width: 40%;
+    }
+
+    .center {
+
+        grid-template-areas:
+            ". . modal logo"
+            ". . color counter"
+            ". . . counter";
+
+
+    }
 
 }
