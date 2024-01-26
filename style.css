@@ -7,6 +7,7 @@
 body {
     height: 100vh;
     background-color: #6990E3;
+    user-select: none;
 
 
 }
@@ -206,7 +207,7 @@ ul {
 
 @media all and (max-width: 560px) {
     .img {
-        width: 40%;
+        width: 70%;
     }
 
     .center {
