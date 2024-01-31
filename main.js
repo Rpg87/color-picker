@@ -13,11 +13,11 @@ const generateRandomHex = () => {
     let hexColor = '#';
 
     for (let i = 0; i < 6; i++) {
-        let randomNumber = Math.floor(Math.random() * 16); /*math.random gives us random numbers between 0 and 1. We multiply that result by 16 (our choices in let digits)*/
+        let randomNumber = Math.floor(Math.random() * 16); /*math.random gives us random numbers between 0 and 1. 
+        We multiply that result by 16 and append the random digit to the hexColor*/
         hexColor += digits[randomNumber];
     }
     return hexColor
-
 };
 
 const changeColor = () => {
@@ -34,8 +34,8 @@ const changeColor = () => {
 // copy color number to clipboard
 const userCopyTxt = (txt) => {
     navigator.clipboard.writeText(txt)
-        .then(() => showMsg('Copiado '))
-        .catch(error => showMsg('Error al copiar el texto: ' + error));
+        .then(() => showMsg('Copied '))
+        .catch(error => showMsg('Error copying text: ' + error));
 }
 
 // show a message when the user copy color number in his clipboard
@@ -92,7 +92,7 @@ const removeFromFavorites = (item) => {
         if (heart.classList.contains('selected')) {
             const color = item.textContent;
             listContainer.removeChild(item);
-            showMsg(`Eliminado: ${color}`);
+            showMsg(`Deleted: ${color}`);
 
         }
 
@@ -123,7 +123,6 @@ listContainer.addEventListener('click', (event) => {
         const isColorInList = isFavoriteInList(txt.textContent.trim());
         heart.classList.toggle('selected', isColorInList);
         heart.classList.toggle('fa-beat', isColorInList);
-
     }
 });
 
